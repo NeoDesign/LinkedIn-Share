@@ -1,0 +1,14 @@
+.nso-linkedin-share-button {
+  display: inline-block;
+  text-decoration: none;
+}
+.nso-linkedin-share-button picture {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+.nso-linkedin-share-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
