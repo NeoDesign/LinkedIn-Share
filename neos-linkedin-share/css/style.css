@@ -1,7 +1,16 @@
-/* Ausrichtung */
-.nso-linkedin-share-wrapper.align-left { text-align: left; }
-.nso-linkedin-share-wrapper.align-center { text-align: center; }
-.nso-linkedin-share-wrapper.align-right { text-align: right; }
+/* Desktop-Ausrichtung (≥768px) */
+@media (min-width: 768px) {
+  .nso-linkedin-share-wrapper.desktop-left  { text-align: left; }
+  .nso-linkedin-share-wrapper.desktop-center{ text-align: center; }
+  .nso-linkedin-share-wrapper.desktop-right { text-align: right; }
+}
+
+/* Mobile-Ausrichtung (<768px) */
+@media (max-width: 767px) {
+  .nso-linkedin-share-wrapper.mobile-left   { text-align: left; }
+  .nso-linkedin-share-wrapper.mobile-center { text-align: center; }
+  .nso-linkedin-share-wrapper.mobile-right  { text-align: right; }
+}
 
 /* Button-Grundstil */
 .nso-linkedin-share-button {
