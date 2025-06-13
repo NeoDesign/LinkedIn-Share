@@ -31,45 +31,48 @@
   transition: transform 0.2s ease-in-out;
 }
 
-/* Pseudo-Element für den Glanz */
+/* --- Sheen-Band: schmaler & auf Button-Höhe beschränkt --- */
+.nso-linkedin-share-button {
+  position: relative;
+  overflow: hidden;
+}
+
 .nso-linkedin-share-button::before {
   content: "";
   position: absolute;
-  top: -100%;
-  left: -100%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    rgba(255,255,255,0) 30%,
-    rgba(255,255,255,0.6) 50%,
-    rgba(255,255,255,0) 70%
-  );
-  pointer-events: none;
+  top: 0;
+  left: -75%;              /* außerhalb links starten */
+  width: 50%;              /* schmaler Streifen */
+  height: 100%;            /* genau Button-Höhe */
+  background: rgba(255,255,255,0.6);
+  transform: skewX(-25deg);
+  opacity: 0;
 }
 
-/* Desktop-Effekt (ab 768px) */
+/* Desktop: Hover → Glanz-Animation + Scale 1.1 */
 @media (min-width: 768px) {
   .nso-linkedin-share-button:hover {
     transform: scale(1.1);
   }
   .nso-linkedin-share-button:hover::before {
-    animation: sheen-desktop 0.8s ease-in-out forwards;
+    opacity: 1;
+    animation: sheen 0.8s ease-in-out forwards;
   }
 }
 
-@keyframes sheen-desktop {
-  from {
-    transform: rotate(45deg) translate(-100%, -100%);
-  }
-  to {
-    transform: rotate(45deg) translate(100%, 100%);
-  }
-}
-
-/* Mobil-Effekt (bis 767px): nur leichter Scale, ohne Glanz */
+/* Mobil: nur leichter Scale, kein Glanz */
 @media (max-width: 767px) {
   .nso-linkedin-share-button:hover {
     transform: scale(1.05);
+  }
+}
+
+/* Sweep: von links ganz nach rechts außen */
+@keyframes sheen {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
   }
 }
