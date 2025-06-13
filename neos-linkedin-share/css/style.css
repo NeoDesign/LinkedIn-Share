@@ -10,3 +10,48 @@
   height: 30px;           /* neu: Höhe fest */
   width: auto;            /* neu: Breite automatisch */
 }
+
+/* 1) Basis-Transition auf dem <a> */
+.nso-linkedin-share-button {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;            /* für den Sheen */
+  transition: transform 0.2s ease-in-out;
+}
+
+/* 2) Leichte Vergrößerung beim Hover */
+.nso-linkedin-share-button:hover {
+  transform: scale(1.1);
+}
+
+/* 3) Sheen: überlagerndes Pseudo-Element */
+.nso-linkedin-share-button::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    rgba(255,255,255,0) 30%,
+    rgba(255,255,255,0.6) 50%,
+    rgba(255,255,255,0) 70%
+  );
+  transform: rotate(45deg) translate(-100%, -100%);
+  pointer-events: none;        /* lässt Klicks durch */
+}
+
+/* 4) Sheen-Animation beim Hover */
+.nso-linkedin-share-button:hover::before {
+  animation: sheen 0.8s ease-in-out forwards;
+}
+
+@keyframes sheen {
+  from {
+    transform: rotate(45deg) translate(-100%, -100%);
+  }
+  to {
+    transform: rotate(45deg) translate(100%, 100%);
+  }
+}
