@@ -1,14 +1,12 @@
-.nso-linkedin-share-button {
-  display: inline-block;
-  text-decoration: none;
-}
+/* Größenanpassung für 30px Höhe: */
 .nso-linkedin-share-button picture {
   display: inline-block;
-  width: 24px;
-  height: 24px;
+  height: 30px;           /* neu: Höhe fest */
+  width: auto;            /* Breite passt sich an */
 }
-.nso-linkedin-share-button img {
+
+.nso-linkedin-share-button picture img {
   display: block;
-  width: 100%;
-  height: auto;
+  height: 30px;           /* neu: Höhe fest */
+  width: auto;            /* neu: Breite automatisch */
 }
