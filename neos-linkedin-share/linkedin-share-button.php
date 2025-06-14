@@ -2,8 +2,8 @@
 /**
  * Plugin Name: NEOs LinkedIn Share Button Shortcode
  * Plugin URI: https://github.com/NeoDesign/LinkedIn-Share
- * Description: Fügt einen Shortcode [linkedin_share_button] hinzu, der einen dynamischen LinkedIn-Share-Button mit SVG/PNG-Fallback ausgibt und separate Ausrichtung für Desktop und Mobil unterstützt. Shortcode-Parameter "align_desktop" bestimmt die Ausrichtung ab einer Bildschirmbreite ≥ 768 px. Der Shortcode-Parameter "align_mobile" gilt für Breiten < 768 px. Beide Parameter akzeptieren nur left, center oder right. Beispiel also: [linkedin_share_button align_desktop=left align_mobile=center]
- * Version:     1.3.0
+ * Description: Fügt einen Shortcode [linkedin_share_button] hinzu, der einen dynamischen LinkedIn-Share-Button mit SVG/PNG-Fallback ausgibt und separate Ausrichtung für Desktop und Mobil unterstützt. Der Shortcode-Parameter "align_desktop" bestimmt die Ausrichtung ab einer Bildschirmbreite ≥ 768 px. Der Shortcode-Parameter "align_mobile" gilt für Breiten < 768 px. Beide Parameter akzeptieren nur left, center oder right. Beispiel also: [linkedin_share_button align_desktop=left align_mobile=center]. Arbeitet klassenbasiert, kann mehrfach in einer Seite verwendet werden.
+ * Version:     1.4.0
  * Author:      NEOs Onlinemarketing, Professor Dr. Alexander Lutz
  * Author URI:  https://die-neos.de/
  * License:     GPL2
@@ -50,7 +50,7 @@ function nso_linkedin_share_button_shortcode( $atts ) {
 
     // HTML-Ausgabe
     $html  = '<div class="' . $wrapper_classes . '">';
-    $html .= '<a href="#" id="nso-linkedin-share-btn" class="nso-linkedin-share-button" target="_blank" rel="noopener noreferrer">';
+    $html .= '<a class="nso-linkedin-share-button" target="_blank" rel="noopener noreferrer">';
     $html .= '<picture>';
     $html .= '<source type="image/svg+xml" srcset="' . esc_url( $svg_url ) . '">';
     $html .= '<img src="' . esc_url( $png_url ) . '" alt="' . esc_attr( $a['alt'] ) . '">';
@@ -80,8 +80,9 @@ function nso_enqueue_assets() {
     $script = "(function(){
         function updateButton(){
             var url = encodeURIComponent(window.location.href);
-            var btn = document.getElementById('nso-linkedin-share-btn');
-            if(btn){ btn.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + url; }
+            document.querySelectorAll('.nso-linkedin-share-button').forEach(function(btn){
+              btn.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + url;
+            });
         }
         document.addEventListener('DOMContentLoaded', function(){ updateButton(); window.addEventListener('hashchange', updateButton); });
     })();";
